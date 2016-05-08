@@ -1,39 +1,71 @@
 /*jshint -W087 */
 (function(){
-	var equipos = [];
-	var tablero = [];
-	var equipo = {
+	var data = [{
+			"id": 1,
+			"nombre": "¿Como me llamo?",
+			"respuestas": ["R1", "R2", "R3"],
+			"respuesta_correctas": [1, 2],
+			"puntuacion": 150,
+			"dificultad": 3,
+			"color": "red",
+			"estado": 1
+		}, {
+			"id": 2,
+			"nombre": "otro",
+			"respuestas": ["R1", "R2", "R3"],
+			"respuesta_correctas": [1, 2],
+			"puntuacion": 150,
+			"dificultad": 3,
+			"color": "red",
+			"estado": 1
+		}];
+	var equipos = [{
 		"id":1,
 		"nombre":"Beta",
 		"logo":"/images/logo1.png",
 		"color":"red",
 		"puntos":0
-	}
-
+	}, {
+		"id":2,
+		"nombre":"Alfa",
+		"logo":"/images/logo2.png",
+		"color":"blue",
+		"puntos":0
+	}];
+	var tablero = [];
 	var elegir_pregunta = function (event) {
-		var self = this;
-		$.getJSON("./js/data.json", function(json) {
-			var pregunta = json.preguntas[self.id-1];
-			debugger;
-			console.log(pregunta);
-		});
+		var pregunta = data[this.id-1];
+		console.log(pregunta); // Pintar pregunta
+		$('.boton').on("click",{pregunta: pregunta}, contestar_pregunta);
 	}
 
 	var crear_tablero = function (){
 		console.log("hola crear");
-		$.getJSON("./js/data.json", function(json) {
-			for(var dato in json.preguntas) {
-				console.log(dato);
-				$('.prueba').append('<h2 id='+json.preguntas[dato].id+'>'+json.preguntas[dato].id+'</h2>');
-				$('#'+json.preguntas[dato].id).on("click", elegir_pregunta);
-				//debugger;
+		for(var dato in data) {
+			console.log(dato);
+			$('.prueba').append('<h2 id='+data[dato].id+'>'+data[dato].id+'</h2>');
+			$('#'+data[dato].id).on("click", elegir_pregunta);
+			if(data[dato].estado != 1) {
+				$('#'+data[dato].id).addClass('contestado');
 			}
-			return json.preguntas;
-		});
+			//debugger;
+		}
 	}
-	tablero = crear_tablero();
+
+	var contestar_pregunta = function (event){
+		//disable_pregunta(even.data.pregunta.id-1);
+	}
+	crear_tablero();
+	debugger;
 })();
 
 function calcular_ganador(equipo1, equipo2){} //recibe las puntuaciones y muestra un ganador
-function contestar_pregunta(pregunta){} //valida las respuestas del equipo y muestra correcto/incorrecto
-function disable_pregunta(pregunta){} //repinta los estilos para una pregunta contestada correctamente
+function contestar_pregunta(pregunta){
+	//crear_tablero
+	//disable_pregunta(pregunta);
+
+} //valida las respuestas del equipo y muestra correcto/incorrecto
+function disable_pregunta(pregunta){
+	// Se modifica la data
+
+} //repinta los estilos para una pregunta contestada correctamente
