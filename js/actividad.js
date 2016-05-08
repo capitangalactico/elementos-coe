@@ -1,19 +1,7 @@
+/*jshint -W087 */
 (function(){
-	 
-	var tablero = [];
 	var equipos = [];
-
-	var pregunta = {
-		"id":1,
-		"nombre":"¿Como me llamo?",
-		"respuestas":["R1","R2","R3"],
-		"respuesta_correctas":[1,2],
-		"puntuacion": 150,
-		"dificultad": 3,
-		"color":"red",//de acuerdo a la dificultad
-		"estado":1 //1-contestado, 2-sin contestar
-	}
-
+	var tablero = [];
 	var equipo = {
 		"id":1,
 		"nombre":"Beta",
@@ -22,13 +10,30 @@
 		"puntos":0
 	}
 
-	tablero[1] = pregunta;
+	var elegir_pregunta = function (event) {
+		var self = this;
+		$.getJSON("./js/data.json", function(json) {
+			var pregunta = json.preguntas[self.id-1];
+			debugger;
+			console.log(pregunta);
+		});
+	}
 
-	$('.prueba').append('<h1>'+equipo.nombre+'<h1>');
+	var crear_tablero = function (){
+		console.log("hola crear");
+		$.getJSON("./js/data.json", function(json) {
+			for(var dato in json.preguntas) {
+				console.log(dato);
+				$('.prueba').append('<h2 id='+json.preguntas[dato].id+'>'+json.preguntas[dato].id+'</h2>');
+				$('#'+json.preguntas[dato].id).on("click", elegir_pregunta);
+				//debugger;
+			}
+			return json.preguntas;
+		});
+	}
+	tablero = crear_tablero();
 })();
 
-function crear_tablero(){}
 function calcular_ganador(equipo1, equipo2){} //recibe las puntuaciones y muestra un ganador
 function contestar_pregunta(pregunta){} //valida las respuestas del equipo y muestra correcto/incorrecto
-function elegir_pregunta(pregunta){} //pintar la nueva interfaz con las respuestas
-function disable_pregunta(){} //repinta los estilos para una pregunta contestada correctamente
+function disable_pregunta(pregunta){} //repinta los estilos para una pregunta contestada correctamente
