@@ -193,7 +193,17 @@ header ul li a:hover, header ul li a:active, header ul li a:focus{
 	float: left;
 	display: block;
 }
-
+.container{
+display: inline-block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	opacity: 1;
+	transition: all 1s ease-in;
+	width: 90%;
+	
+}
 .muestra:hover{
 	margin-top: -180px;
 }
