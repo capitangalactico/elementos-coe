@@ -90,7 +90,7 @@
 <!--Progreso del juego: Cada que una pregunta se consteste cmabir el style='width: 10%' con el porcentaje adecuado-->
 				<h4>Progreso del juego</h4>
 				<div class="progress">
-					<div class="progress-bar progress-bar-success" style="width: 40%"></div>
+					<div class="progress-bar progress-bar-success" style="width:0%"></div>
 				</div>
 			</div>
 <!--TABLERO-->
@@ -107,45 +107,27 @@
 			  	<div class="vista_previa arriba">
 			  	<p class="circle"><span class="icon-pencil"></span></p>
 
-		<!--IMPORTANTE: Este boton hace el pop-up poner el id de la pregunta de nuevo para que al darle click obtengamos su id, y podamos pintar 
+		<!--IMPORTANTE: Este boton hace el pop-up poner el id de la pregunta de nuevo para que al darle click obtengamos su id, y podamos pintar
 		la información en el estado 2-->
-				<button class="btn btn-block btn-danger btn-lg bold boton-pregunta" id="1">
-					Contestar
-				</button>
+				<button class="btn btn-block btn-danger btn-lg bold boton-pregunta" id="1">Contestar</button>
 				</p>
 			  </div>
 
 <!--DIV agregado por que nadie puede hacer un puto pop-up con handlers decentes y medio hueva hacer uno a min-->
-<!--Agrege este div con sus id + "-res"-->
-			<div class="respuestas abajo">
+<!--Agrege este div con sus id + "-res" yo le quite las clases-->
+			<div class="" id="respuestas">
 				<p>¿Tona será gay o solo es broma?</p>
 				<p class="resp"><input type="checkbox" name="vehicle" value="Bike"> Yes </p>
  				<p class="resp"><input type="checkbox" name="vehicle" value="Car" >No </p>
  				<p class="resp"><input type="checkbox" name="vehicle" value="Bike"> Maybe </p>
  				<p class="resp"><input type="checkbox" name="vehicle" value="Car" >Of course </p>
- 				<a href="#" class="btn btn-danger ">Confirmar</a>
+ 				<a href="#" id="confirmar" class="btn btn-danger ">Confirmar</a>
 			</div>
 		</div>
 			  <!--Puntuacion de la pregunta-->
 			  <div class="panel-footer bold"><span class="icon-lock"></span> 50 puntos</div>
 			</div>
 		<!--FIN ESTADO 1-->
-
-						<!--ESTADO DOS-->
-						<!--Depende del id mandado en el estado 1, este estado no se llena aqui, usar en el js la funcion llamada mostrar_pregunta();-->
-							<div class="popup gee-popup">
-								<div class="popup-inner">
-									<a class="close-button popup-close-button">
-										&times;
-									</a>
-								<div class="popup-header">
-									<h3 class="popup-title"></h3>
-									</div>
-										<p class="paragraph" ></p>
-									<div class="user-content"></div>
-								</div>
-							</div>
-							<!--FIN ESTADO 2-->
 							<!--ESTADO TRES-->
 							<!--Este estado solo consiste en agregar y quitar cosas al estado 1, este estado se modificara todo en el js-->
 							<div class="panel panel-default" id="3">
