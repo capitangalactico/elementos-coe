@@ -5,7 +5,7 @@
 			"id": 1,
 			"nombre": "¿Como me llamo?",
 			"respuestas": ["R1", "R2", "R3", "fa"],
-			"respuesta_correctas": 1,
+			"respuesta_correcta": "R1",
 			"puntuacion": 90,
 			"dificultad": 2,
 			"color": "red",
@@ -14,7 +14,7 @@
 			"id": 2,
 			"nombre": "otro",
 			"respuestas": ["R1", "R2", "R3", "fsd"],
-			"respuesta_correctas": 2,
+			"respuesta_correctas": "R2",
 			"puntuacion": 150,
 			"dificultad": 3,
 			"color": "red",
@@ -24,7 +24,7 @@
 			"id": 3,
 			"nombre": "La otra pregunta",
 			"respuestas": ["R1", "R2", "R3", "fd"],
-			"respuesta_correctas": 2,
+			"respuesta_correcta": "R3",
 			"puntuacion": 150,
 			"dificultad": 3,
 			"color": "red",
@@ -32,13 +32,13 @@
 		}];
 	var equipos = [{
 		"id":1,
-		"nombre":"Beta",
+		"nombre":"Alfa",
 		"logo":"/images/logo1.png",
 		"color":"red",
 		"puntos":0
 	}, {
 		"id":2,
-		"nombre":"Alfa",
+		"nombre":"Beta",
 		"logo":"/images/logo2.png",
 		"color":"blue",
 		"puntos":0
@@ -63,38 +63,40 @@
 		var id = event.data.id_pregunta;
 		var correcto=false;
 		/*AQUI VA TU MAGIA PARA VER SI ESTA CORRECTO*/
-		var $form_respuestas = $('.respuestas-'+id);
-		var respuesta = $form_respuestas.children('input:checked').value;
+		var $form_respuestas = $('#respuestas-'+id);
+		var respuesta = $form_respuestas.find('input:checked').val();
 		debugger;
-		if (respuesta == data[id-1].respuesta) {
+		if (respuesta == data[id-1].respuesta_correcta) {
 			correcto = true;
 		} else {
 			correcto = false;
 		}
 		debugger;
 		if(correcto){
+			console.log("correcto!");
 			var porciento = $('.progress-bar').css("width", "+=5");
-		swal(
-			'Bien hecho',
-			'Continua así',
-			'success'
-		);
+			swal(
+				'Bien hecho',
+				'Continua así',
+				'success'
+			);
 
 		// la pregunta y quien contesto bien
 		actualizar_equipos(id, turno);
 
 		}else{
+			console.log("mal!");
 			swal(
 				'Mal hecho',
 				'No continues así',
 				'error'
 			);
 		}
-		actualizar_turno(id_pregunta);
+		actualizar_turno(id);
 		/*DESPUES DE VERIFICAR AQUI SE LLAMARIA A UN FUNCION QUE AUMENTE LOS PUNTOS DEL EQUIPO Y LOS ACTUALIZAE EN LA UI*/
 	}
 
-	function actulizar_equipos(id_pregunta, equipo) {
+	function actualizar_equipos(id_pregunta, equipo) {
 		data[id_pregunta-1].estado = 3;
 		equipos[equipo-1].puntos = equipos[equipo-1].puntos + data[idpregunta-1].puntuacion;
 		if(equipo == 1){
