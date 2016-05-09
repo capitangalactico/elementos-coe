@@ -186,15 +186,32 @@ header ul li a:hover, header ul li a:active, header ul li a:focus{
 
 .panel-body{
 	position: relative;
+	height: 190px;
+	overflow: hidden;
 }
+.panel-body div{
+	float: left;
+	display: block;
+}
+
+.muestra:hover{
+	margin-top: -180px;
+}
+
 .panel-body .vista_previa{
-	position: absolute;
+	display: inline-block;
 	top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
 	opacity: 1;
 	transition: all 1s ease-in;
+	width: 90%;
+}
+.panel-body .respuestas{
+	display: inline-block;
+	position: absolute;
+	bottom: -100;
 }
 .panel-body .vista_previa p{
 	padding-top: 5px;
@@ -211,16 +228,9 @@ header ul li a:hover, header ul li a:active, header ul li a:focus{
 }
 .panel-body .vista_previa:hover{
 	z-index: -1;
-	opacity: 0;
 }
-.arriba{
-	z-index: 99;
-	opacity: 1;
-}
-.abajo{
-	z-index: -1;
-	opacity: 0;
-}
+
+
 .icon-home:before {
     content: "\e900";
 }
