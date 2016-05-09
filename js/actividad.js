@@ -38,10 +38,17 @@
 		console.log(pregunta); // Pintar pregunta
 		$('.boton').on("click",{pregunta: pregunta}, contestar_pregunta);
 	}
-
+ 
 	links_suaves();
-	verificar_respuestas(1, 2);
-	mostrar_pregunta(1, 50, "¿Tona es gay?", 2);
+
+	$("#botonazo1").click(function(){
+		$.ajax({
+   url:mostrar_pregunta(1, 50, "¿Tona es gay?", 2),
+   success:function(){
+   verificar_respuestas(1,2)
+		}
+		})
+	})
 	
 
 })();
@@ -91,21 +98,28 @@ function mostrar_pregunta(id_pregunta, puntos, contenido_pregunta, respuestas){
 		heading:"Pregunta "+id_pregunta+" - "+puntos+"pts",
 		paragraph: ""+contenido_pregunta,
 		buttonClass : "btn btn-info",
-		userContent:"<label><input type='checkbox' id='cbox1' value='first_checkbox'>Tonatihu</label><br><input type='checkbox' id='cbox2' value''second_checkbox'> <label for='cbox2'>Juan Daniel</label><br><button class='popup-close-button btn btn-danger' id='boton"+id_pregunta+"'>Contestar</button>",
+		userContent:"<label><input type='checkbox' id='cbox1' value='first_checkbox'>Tonatihu</label><br><input type='checkbox' id='cbox2' value''second_checkbox'> <label for='cbox2'>Juan Daniel</label><br>"+
+		"<button class='popup-close-button btn btn-danger' id='boton"+id_pregunta+"'>Contestar</button>",
 		initThrough : function () {
 			$(".btn-init-pop").click(function(e) {
 				e.preventDefault();
 				$.fn.jPopup.openPopup();
 			});
+			$(".user-content #boton1").on("click",function(){
+				alert("hola");
+			});
 		}
 	});
+	console.log("antes del call");
+	$(document).trigger('function_a_complete');
 }
 
 function verificar_respuestas(id_pregunta, respuestas){
-	$("boton"+id_pregunta+"").click(function(){
+	console.log("verificar");
+	$(".user-content #boton"+id_pregunta+"").on("click","boton"+id_pregunta,function(){
 		var correcto=true;
 		/*AQUI VA TU MAGIA PARA VER SI ESTA CORRECTO*/
-		if(correcto){
+		if(id_pregunta==1){
 			swal(
 		  	'Bien hecho',
 		  	'Continua así',
