@@ -1,5 +1,6 @@
 /*jshint -W087 */
 (function(){
+	var turno = 1;
 	var data = [{
 			"id": 1,
 			"nombre": "¿Como me llamo?",
@@ -124,16 +125,19 @@ function links_suaves(){
 
 function verificar_respuestas(id_pregunta, respuestas){
 	$("boton"+id_pregunta+"").click(function(){
-	console.log("hola");
+		console.log("hola");
 
 		var correcto=true;
 		/*AQUI VA TU MAGIA PARA VER SI ESTA CORRECTO*/
 		if(correcto){
+			var porciento = $('.progress-bar').css("width", "+=5");
 		swal(
 			'Bien hecho',
 			'Continua así',
 			'success'
 		);
+		// la pregunta y quien contesto bien
+		actualizar_turno(id_pregunta, turno);
 		}else{
 			swal(
 				'Bien hecho',
@@ -141,6 +145,26 @@ function verificar_respuestas(id_pregunta, respuestas){
 				'error'
 			);
 		}
+		actualizar_turno(id_pregunta)
 		/*DESPUES DE VERIFICAR AQUI SE LLAMARIA A UN FUNCION QUE AUMENTE LOS PUNTOS DEL EQUIPO Y LOS ACTUALIZAE EN LA UI*/
 	});
+}
+
+function actulizar_equipos(id_pregunta, equipo) {
+	data[id_pregunta-1].estado = 3;
+	equipos[equipo-1].puntos = equipos[equipo-1].puntos + data[idpregunta-1].puntuacion;
+	if(equipo == 1){
+		$("li.team_beta").children('span.badge').html(equipos[equipo-1].puntos);
+	} else {
+		$("li.team_alpha").children('span.badge').html(equipos[equipo-1].puntos);
+	}
+
+}
+
+function actualizar_turno(id_pregunta) {
+	if(turno == 1) {
+		turno = 2;
+	} else {
+		turno = 1;
+	}
 }
