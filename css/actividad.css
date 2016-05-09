@@ -1,0 +1,227 @@
+@font-face {
+    font-family: 'icomoon';
+    src:    url('../fonts/icomoon.eot?ypsfx');
+    src:    url('../fonts/icomoon.eot?ypsfx#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.ttf?ypsfx') format('truetype'),
+        url('../fonts/icomoon.woff?ypsfx') format('woff'),
+        url('../fonts/icomoon.svg?ypsfx#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body{
+	font-size: 18px;
+}
+header{
+	background-color: rgba(0,0,0,0.6);
+	left:0;
+	margin: 0 0 0;
+	padding: 0;
+	position: absolute;
+	right: 0;
+	top:0;
+}
+header ul{
+	display: block;
+	list-style-type: none;
+	padding: 0.5em 10px;
+	margin: 0;
+}
+header ul li{
+	display: inline-block;
+	font-family: Open Sans;
+	font-size: 1em;
+	padding: 1em;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+}
+header ul li a{
+	color:white;
+	text-decoration: underline;
+}
+header ul li a:hover, header ul li a:active, header ul li a:focus{
+	color: #DBD2A9;
+}
+.intro{
+  background: url(../images/oral2.jpg); 
+  background-position: 0px 0px;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  min-height: 100vh;
+  padding-left: 0em;
+  padding-top: 5em;
+  padding-bottom: 1.5em;
+  width: 100%;
+}
+.intro h1{
+	color: #DBD2A9;
+	font-family: Open Sans;
+	padding-left: 1em;
+}
+.instrucciones{
+	padding: 1em;
+}
+.instrucciones h2{
+	color: #ff0039;
+	font-weight: 600;
+}
+.intro .intro_tema{
+	background-color: rgba(0,0,0,0.3);
+	border-radius: 5px;
+	padding-left: 2em;
+	margin: 0 auto;
+	width:75%;
+	opacity: 0;
+}
+.intro .intro_tema .dibujo{
+	text-align: center;
+	font-size: 2em;
+}
+.pink{
+	color: #ff0039;
+}
+.big{
+	color: #DBD2A9;
+	font-family: Open Sans;
+	padding-left: 2em;
+}
+.white{
+	color: white;
+	font-weight: 600;
+	text-align: center;
+}
+.gray{
+	color:#D9DBA9;
+	font-weight: 400;
+}
+.left{
+	text-align: left;
+}
+
+#actividad .tablero .list-group .list-group-item{
+	display: inline-block;
+	width: 30%;
+}
+#actividad .tablero .list-group{
+	margin-left: 28%;
+}
+
+#actividad .tablero h3{
+	font-weight: 600;
+}
+#actividad .tablero .team_alpha{
+	border-color: #B20700;
+	background-color:#B20700;
+	color: white;
+	font-weight: 600;
+}
+#actividad .tablero .team_alpha span{
+	background-color: white;
+	color: #B20700;
+}
+#actividad .tablero .team_beta{
+	border-color: #1725B2;
+	background-color:#1725B2;
+	color: white;
+	font-weight: 600;
+}
+#actividad .tablero .team_beta span{
+	background-color: white;
+	color: #1725B2;
+}
+
+#actividad .tablero .progreso{
+	margin: 1em auto;
+	width: 80%;
+}
+#actividad .tablero .circle{
+	color: gray;
+	font-size: 3em;
+	text-align: center;
+}
+.panel{
+	display: inline-block;
+	margin: 2%;
+	width: 20%;
+}
+.center{
+	text-align: center;
+}
+.rel{
+	font-weight: 600;
+	position: relative;
+}
+.left-go{
+    right: 0;
+    border-radius: 4px;
+    margin-right: 1em;
+    margin-top: 2px;
+    position: absolute;
+}
+.bold{
+	font-weight: 600;
+}
+.constestado_letra_alpha{
+	color:  #B20700;
+}
+.constestado_letra_beta{
+	color:  #1725B2;
+}
+
+
+
+
+.icon-home:before {
+    content: "\e900";
+}
+.icon-pencil:before {
+    content: "\e901";
+}
+.icon-quill:before {
+    content: "\e902";
+}
+.icon-profile:before {
+    content: "\e903";
+}
+.icon-coin-dollar:before {
+    content: "\e904";
+}
+.icon-bubble:before {
+    content: "\e905";
+}
+.icon-lock:before {
+    content: "\e906";
+
+}
+.icon-unlocked:before {
+    content: "\e907";
+}
+.icon-heart:before {
+    content: "\e908";
+}
+.icon-cross:before {
+    content: "\e909";
+}
+.icon-checkmark:before {
+    content: "\e90a";
+}
+.icon-radio-checked:before {
+    content: "\e90b";
+}
+
