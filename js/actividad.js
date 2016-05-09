@@ -33,20 +33,21 @@
 		"puntos":0
 	}];
 	var tablero = [];
+	// remplazar la infomacion del formulario
 	var elegir_pregunta = function (event) {
 		var pregunta = data[this.id-1];
 		console.log(pregunta); // Pintar pregunta
+		$('contenedor_pregunta').addClass('visible');
 		$('.boton').on("click",{pregunta: pregunta}, contestar_pregunta);
 	}
-
+	// actualiza toda la informacion
 	var crear_tablero = function (){
-		console.log("hola crear");
+		console.log("crear");
 		for(var dato in data) {
-			console.log(dato);
-			$('.prueba').append('<h2 id='+data[dato].id+'>'+data[dato].id+'</h2>');
+			$('.prueba').append('<div id='+data[dato].id+'>'+data[dato].id+'</div>');
 			$('#'+data[dato].id).on("click", elegir_pregunta);
 			if(data[dato].estado != 1) {
-				$('#'+data[dato].id).addClass('contestado');
+				$('#'+data[dato].id).addClass('contestado'); // para desabilitar la pregunta
 			}
 			//debugger;
 		}
@@ -61,6 +62,10 @@
 
 function calcular_ganador(equipo1, equipo2){} //recibe las puntuaciones y muestra un ganador
 function contestar_pregunta(pregunta){
+	// evaluar
+	// si es correcta marcarla y volver al inicio, si no solo un alert y limpiar campos
+	// Asignar puntaje, modificar data
+	$('contenedor_pregunta').removeClass('visible');
 	//crear_tablero
 	//disable_pregunta(pregunta);
 
