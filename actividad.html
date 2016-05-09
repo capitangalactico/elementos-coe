@@ -10,11 +10,145 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://bootswatch.com/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://bootswatch.com/cosmo/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<link rel="stylesheet" type="text/css" href="css/plugin.css">
+	<link rel="stylesheet" type="text/css" href="css/actividad.css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:800' rel='stylesheet' type='text/css'>
+	<script type="text/javascript" src="js/plugin.js" ></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/g/sweetalert2@2.2.0(sweetalert2.min.css+sweetalert2.css),sweetalert2@2.2.9(sweetalert2.min.css+sweetalert2.css)">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/g/sweetalert2@2.2.0,sweetalert2@2.2.9"></script>
 </head>
 <body>
-	<section class="prueba">
 
+	<!--Seccion de inicio, ningun cambio se debe realizar aqui-->
+	<header>
+		<ul>
+			<li><a href="#inicio">Inicio</a></li>
+			<li><a href="#actividad">Actividad</a></li>
+			<li><a href="https://github.com/capitangalactico/elementos-coe" target="_blank">Github</a></li>
+		</ul>
+	</header>
+	<section class="intro" id="inicio">
+		<h1>Comunicación Oral</h1>
+		<h3 class="big">Aspectos Subjetivos</h3>
+		<div class="intro_tema uno">
+			<h3 class="white">Autodominio</h3>
+			<p class="dibujo"><span class="icon-radio-checked gray"></span></p>
+			<p class="gray">
+				Consiste en conseguir el control de uno mismo, es actuar con determinación y valor, sobre todo tenerse confianza.
+			</p>
+		</div>
+		<div class="intro_tema dos">
+			<h3 class="white">Organización de ideas</h3>
+			<p class="dibujo"><span class="icon-profile gray"></span></p>
+			<p class="gray left">
+				Dominar el tema que se va a desarrollar, analiza diversos enfoques sobre el mismo.
+			</p>
+		</div>
+		<div class="intro_tema tres">
+			<h3 class="white">Proyección de emociones</h3>
+			<p class="dibujo"><span class="icon-heart gray"></span></p>
+			<p class="gray">
+				"Evitar tener emociones negativas y controlar los pensamientos que pasan por nuestra mente es como todo, un hábito".
+			</p>
+		</div>
 	</section>
-	<script type="text/javascript" src="actividad.js"></script>
+
+	<!--.........................MAQUETACION DEL JUEGO, instrucciones ninguno cambio se debe realizar aquí.......................-->
+	<section id="actividad">
+		<article class="instrucciones">
+			<h2>Conociendo la Comunicación Oral</h2>
+			<h3>Instrucciones</h3>
+			<ol>
+				<li>Dividir el grupo en 2 equipos, cada equipo podra elegir algunos integrantes de apoyo de entre los expositores.</li>
+				<li>Los equipos deberán elegir a un participante, el cual asu ves elegirá una casilla del tablero y tratará de contestar correctamente.</li>
+				<li>Cada casilla tiene un dificultad diferente, para las preguntas con dificultad 2 y 3, el equipo completo podrá ayudar al participante a contestar.</li>
+				<li>Cada participante contará con un 1 minuto para poder contestar y ganar los puntos de la casilla.</li>
+				<li>Dependiendo de la dificultad de la casilla se calcularán los puntos ganados por el equipo de manera proporcional.</li>
+				<li>Gana el equipo con más puntos.</li>
+			</ol>
+		</article>
+
+		<!--Seccion para el tablero, AQUI empieza la magia Y SE DEBE LLENAR DE ACUERDO AL JSON-->
+		<article class="tablero">
+			
+			<!--EQUIPOS-->
+			<h3 class="center">Equipos</h3>
+			<ul class="list-group">
+			  <li class="list-group-item team_alpha" id="1">
+<!--Puntos: Cada que un equipo consiga puntos modificar el span con la clase badge, al crear el <li> para cada equipo mandar su id, para buscar el <li> con el id correspondiente y cambiar su <span> correspondiente-->
+			    <span class="badge">0</span>
+			    Equipo Alpha
+			  </li>
+			  <li class="list-group-item team_beta" id="2">
+			    <span class="badge">0</span>
+			    Equipo Beta
+			  </li>
+			</ul>
+			<!--PROGRESO-->
+			<div class="progreso">
+<!--Progreso del juego: Cada que una pregunta se consteste cmabir el style='width: 10%' con el porcentaje adecuado-->
+				<h4>Progreso del juego</h4>
+				<div class="progress">
+					<div class="progress-bar progress-bar-success" style="width: 40%"></div>
+				</div>
+			</div>
+<!--TABLERO-->
+		<!--ESTADO 1-->
+		<!--Este el el primer estado con un for() llenar el tablero con todas las preguntas-->
+			<!--ID_Pregunta-->
+			<div class="panel panel-default" id="1">
+			<!--Pregunta + id, dificultad-->
+			  <div class="panel-heading rel">Pregunta 1<span class="label label-danger left-go">Dif. 1</span></div>
+			  <div class="panel-body">
+			  	<p class="circle"><span class="icon-pencil"></span></p>
+
+		<!--IMPORTANTE: Este boton hace el pop-up poner el id de la pregunta de nuevo para que al darle click obtengamos su id, y podamos pintar 
+		la información en el estado 2-->
+				<button class="btn btn-init-pop btn-block btn-danger btn-lg bold" id="1">
+					Contestar
+				</button>
+				</p>
+			  </div>
+			  <!--Puntuacion de la pregunta-->
+			  <div class="panel-footer bold"><span class="icon-lock"></span> 50 puntos</div>
+			</div>
+		<!--FIN ESTADO 1-->
+
+		<!--ESTADO DOS-->
+		<!--Depende del id mandado en el estado 1, este estado no se llena aqui, usar en el js la funcion llamada mostrar_pregunta();-->
+			<div class="popup gee-popup">
+				<div class="popup-inner">
+					<a class="close-button popup-close-button">
+						&times;
+					</a>
+				<div class="popup-header">
+					<h3 class="popup-title"></h3>
+					</div>
+						<p class="paragraph" ></p>
+					<div class="user-content"></div>
+				</div>
+			</div>
+			<!--ESTADO TRES-->
+			<!--Este estado solo consiste en agregar y quitar cosas al estado 1, este estado se modificara todo en el js-->
+			<div class="panel panel-default" id="3">
+			  <div class="panel-heading rel">Pregunta 3<span class="label label-danger left-go">Dif. 3</span></div>
+			  <div class="panel-body">
+
+			 <!--Aqui empiezan los cambios, al <span> se le agrega la clase css (.constestado_letra_alpha) si gano alpha y la clase (..constestado_letra_beta) para beta-->
+			  	<p class="circle"><span class="icon-pencil constestado_letra_alpha"></span></p>
+			 <!--El button recibe la nueva clase css (.disabled) y se le quita (.btn-init-pop)-->
+				<button class="btn btn-block btn-default btn-lg bold disabled" >
+					<span class="icon-lock"></span>
+				</button>
+				</p>
+			  </div>
+			  <div class="panel-footer bold"><span class="icon-checkmark"></span> 150 puntos</div>
+			</div>
+			<!--FIN ESTADO 3-->
+
+		</article>
+	</section>
+	<script type="text/javascript" src="js/actividad.js"></script>
 </body>
 </html>
