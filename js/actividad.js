@@ -110,11 +110,6 @@
 	crear_tablero();
 })();
 
-function calcular_ganador(equipo1, equipo2){} //recibe las puntuaciones y muestra un ganador
-function contestar_pregunta(pregunta){} //valida las respuestas del equipo y muestra correcto/incorrecto
-function elegir_pregunta(pregunta){} //pintar la nueva interfaz con las respuestas
-function disable_pregunta(){} //repinta los estilos para una pregunta contestada correctamente
-
 function links_suaves(){
 	//funcion visual no afecta el juego
 	$('a[href^="#"]').on('click',function (e) {
