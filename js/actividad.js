@@ -18,6 +18,16 @@
 			"dificultad": 3,
 			"color": "red",
 			"estado": 1
+		},
+		{
+			"id": 3,
+			"nombre": "La otra pregunta",
+			"respuestas": ["R1", "R2", "R3"],
+			"respuesta_correctas": [1, 2],
+			"puntuacion": 150,
+			"dificultad": 3,
+			"color": "red",
+			"estado": 1
 		}];
 	var equipos = [{
 		"id":1,
@@ -37,6 +47,28 @@
 			console.log(dato);
 			$(".contenedor_preguntas").append('<div class="panel panel-default" id="'+data[dato].id+'"><div class="panel-heading rel">Pregunta '+data[dato].id+'<span class="label label-danger left-go">Dif. '+data[dato].dificultad+'</span></div><div class="panel-body"><p class="circle"><span class="icon-pencil"></span></p><button class="btn btn-init-pop btn-block btn-danger btn-lg bold" id="'+data[dato].id+'">Contestar</button></p></div><div class="panel-footer bold"><span class="icon-lock"></span> '+data[dato].puntuacion+' puntos</div></div>');
 		}
+	}
+
+	function mostrar_pregunta(id_pregunta, puntos, contenido_pregunta, respuestas){
+		$("html").jPopup({
+			heading:"Pregunta "+id_pregunta+" - "+puntos+"pts",
+			paragraph: ""+contenido_pregunta,
+			buttonClass : "btn btn-info",
+			userContent:"<label><input type='checkbox' id='cbox1' value='first_checkbox'>Tonatihu</label><br><input type='checkbox' id='cbox2' value''second_checkbox'> <label for='cbox2'>Juan Daniel</label><br><button class='popup-close-button btn btn-danger' id='boton"+id_pregunta+"'>Contestar</button>",
+			initThrough : function () {
+				$(".btn-init-pop").click(function(e) {
+					e.preventDefault();
+					console.log("abrio");
+					$.fn.jPopup({
+						heading:"Pregunta "+this.id+" - "+data[this.id-1].puntuacion+"pts",
+						paragraph: data[this.id-1].nombre,
+						buttonClass : "btn btn-info",
+						userContent:"<label><input type='checkbox' id='cbox1' value='first_checkbox'>Tonatihu</label><br><input type='checkbox' id='cbox2' value''second_checkbox'> <label for='cbox2'>Juan Daniel</label><br><button class='popup-close-button btn btn-danger' id='boton"+this.id+"'>Contestar</button>"});
+					$.fn.jPopup.openPopup();
+					//debugger;
+				});
+			}
+		});
 	}
 
 	links_suaves();
@@ -81,27 +113,6 @@ function links_suaves(){
 	});
 }
 
-function mostrar_pregunta(id_pregunta, puntos, contenido_pregunta, respuestas){
-	$("html").jPopup({
-		heading:"Pregunta "+id_pregunta+" - "+puntos+"pts",
-		paragraph: ""+contenido_pregunta,
-		buttonClass : "btn btn-info",
-		userContent:"<label><input type='checkbox' id='cbox1' value='first_checkbox'>Tonatihu</label><br><input type='checkbox' id='cbox2' value''second_checkbox'> <label for='cbox2'>Juan Daniel</label><br><button class='popup-close-button btn btn-danger' id='boton"+id_pregunta+"'>Contestar</button>",
-		initThrough : function () {
-			$(".btn-init-pop").click(function(e) {
-				e.preventDefault();
-				$.fn.jPopup({
-					heading:"Pregunta "+id_pregunta+" - "+puntos+"pts",
-					paragraph: ""+contenido_pregunta,
-					buttonClass : "btn btn-info",
-					userContent:"<label><input type='checkbox' id='cbox1' value='first_checkbox'>Tonatihu</label><br><input type='checkbox' id='cbox2' value''second_checkbox'> <label for='cbox2'>Juan Daniel</label><br><button class='popup-close-button btn btn-danger' id='boton"+id_pregunta+"'>Contestar</button>"});
-				$.fn.jPopup.openPopup();
-				debugger;
-			});
-		}
-	});
-}
-
 function verificar_respuestas(id_pregunta, respuestas){
 	$("boton"+id_pregunta+"").click(function(){
 	console.log("hola");
@@ -109,17 +120,17 @@ function verificar_respuestas(id_pregunta, respuestas){
 		var correcto=true;
 		/*AQUI VA TU MAGIA PARA VER SI ESTA CORRECTO*/
 		if(correcto){
-			swal(
-		  	'Bien hecho',
-		  	'Continua así',
-		  	'success'
-			)
+		swal(
+			'Bien hecho',
+			'Continua así',
+			'success'
+		);
 		}else{
 			swal(
-		  	'Bien hecho',
-		  	'Continua así',
-		  	'error'
-			)
+				'Bien hecho',
+				'Continua así',
+				'error'
+			);
 		}
 		/*DESPUES DE VERIFICAR AQUI SE LLAMARIA A UN FUNCION QUE AUMENTE LOS PUNTOS DEL EQUIPO Y LOS ACTUALIZAE EN LA UI*/
 	});
