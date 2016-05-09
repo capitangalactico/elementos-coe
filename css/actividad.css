@@ -186,7 +186,7 @@ header ul li a:hover, header ul li a:active, header ul li a:focus{
 
 .panel-body{
 	position: relative;
-	height: 190px;
+	height: 220px;
 	overflow: hidden;
 }
 .panel-body div{
@@ -202,12 +202,18 @@ display: inline-block;
 	opacity: 1;
 	transition: all 1s ease-in;
 	width: 90%;
-	
 }
 .muestra:hover{
-	margin-top: -180px;
+	margin-top: -200px;
 }
 
+.panel-body #respuestas p{
+	font-size: 14px;
+	margin-bottom: 0.2em;
+}
+.panel-body #respuestas span{
+	font-size: 14px;
+}
 .panel-body .vista_previa{
 	display: inline-block;
 	top: 0;
@@ -215,13 +221,16 @@ display: inline-block;
 	left: 0;
 	right: 0;
 	opacity: 1;
+	margin-bottom: 30px;
 	transition: all 1s ease-in;
 	width: 90%;
 }
-.panel-body .respuestas{
-	display: inline-block;
-	position: absolute;
-	bottom: -100;
+.smally{
+	padding: 5px 9px;
+}
+.panel-body #respuestas{
+	max-height: 180px;
+	width: 100%;
 }
 .panel-body .vista_previa p{
 	padding-top: 5px;
@@ -230,9 +239,9 @@ display: inline-block;
 	width: 80%;
 	margin: 5px auto;
 }
-.panel-body .respuestas .resp{
+.panel-body .respuestas span{
 	display: inline-block;
-	width: 25%;
+	width: 20%;
 	opacity: 0;
 	transition: all 1s ease-in;
 }
