@@ -5,7 +5,7 @@
 			"id": 1,
 			"nombre": "¿Como me llamo?",
 			"respuestas": ["R1", "R2", "R3", "fa"],
-			"respuesta_correctas": [1, 2],
+			"respuesta_correctas": 1,
 			"puntuacion": 90,
 			"dificultad": 2,
 			"color": "red",
@@ -14,7 +14,7 @@
 			"id": 2,
 			"nombre": "otro",
 			"respuestas": ["R1", "R2", "R3", "fsd"],
-			"respuesta_correctas": [1, 2],
+			"respuesta_correctas": 2,
 			"puntuacion": 150,
 			"dificultad": 3,
 			"color": "red",
@@ -24,7 +24,7 @@
 			"id": 3,
 			"nombre": "La otra pregunta",
 			"respuestas": ["R1", "R2", "R3", "fd"],
-			"respuesta_correctas": [1, 2],
+			"respuesta_correctas": 2,
 			"puntuacion": 150,
 			"dificultad": 3,
 			"color": "red",
@@ -53,7 +53,7 @@
 			enunciado = data[indice].nombre;
 			pregunta_actual = data[indice].id;
 			array_preguntas = data[indice].respuestas;
-			$('.contenedor_preguntas').append('<div class="panel panel-default"><div class="panel-heading rel">Pregunta '+pregunta_actual+'<span class="label label-danger left-go">Dif. '+data[indice].dificultad+'</span></div><div class="panel-body"><div class="vista_previa arriba"><p class="circle"><span class="icon-pencil"></span></p><button class="btn btn-block btn-danger btn-lg bold boton-pregunta" id="'+pregunta_actual+'">Contestar</button></p></div><div class="" id="respuestas-'+pregunta_actual+'"><p>'+enunciado+'</p><p class="resp"><input type="checkbox" name="vehicle" value="Bike">'+array_preguntas[0]+'</p><p class="resp"><input type="checkbox" name="vehicle" value="Car">'+array_preguntas[1]+'</p><p class="resp"><input type="checkbox" name="vehicle" value="Bike">'+array_preguntas[2]+'</p><p class="resp"><input type="checkbox" name="vehicle" value="Car">'+array_preguntas[3]+'</p><a href="#" id="confirmar'+pregunta_actual+'" class="btn btn-danger">Confirmar</a></div></div><div class="panel-footer bold"><span class="icon-lock"></span> '+data[indice].puntuacion+' puntos</div></div>');
+			$('.contenedor_preguntas').append('<div class="panel panel-default"><div class="panel-heading rel">Pregunta '+pregunta_actual+'<span class="label label-danger left-go">Dif. '+data[indice].dificultad+'</span></div><div class="panel-body"><div class="container muestra"><div class="vista_previa"><p class="circle"><span class="icon-pencil"></span></p><button class="btn btn-block btn-danger btn-lg bold boton-pregunta" id="'+pregunta_actual+'">Contestar</button></p></div><div class="" id="respuestas-'+pregunta_actual+'"><p>'+enunciado+'</p><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[0]+'">'+array_preguntas[0]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[1]+'">'+array_preguntas[1]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[2]+'">'+array_preguntas[2]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[3]+'">'+array_preguntas[3]+'</span><a href="#" id="confirmar'+pregunta_actual+'" class="btn btn-danger smally">Confirmar</a></div></div></div><div class="panel-footer bold"><span class="icon-lock"></span> '+data[indice].puntuacion+' puntos</div></div>');
 			$('#confirmar'+pregunta_actual).on('click', {id_pregunta: pregunta_actual}, verificar_respuestas);
 		}
 	}
@@ -64,7 +64,13 @@
 		var correcto=false;
 		/*AQUI VA TU MAGIA PARA VER SI ESTA CORRECTO*/
 		var $form_respuestas = $('.respuestas-'+id);
-		var respuesta = $form_respuestas.children('input:checked').id;
+		var respuesta = $form_respuestas.children('input:checked').value;
+		debugger;
+		if (respuesta == data[id-1].respuesta) {
+			correcto = true;
+		} else {
+			correcto = false;
+		}
 		debugger;
 		if(correcto){
 			var porciento = $('.progress-bar').css("width", "+=5");
@@ -75,7 +81,7 @@
 		);
 
 		// la pregunta y quien contesto bien
-		actualizar_turno(id_pregunta, turno);
+		actualizar_equipos(id, turno);
 
 		}else{
 			swal(
