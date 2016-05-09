@@ -14,7 +14,7 @@
 			"id": 2,
 			"nombre": "otro",
 			"respuestas": ["R1", "R2", "R3", "fsd"],
-			"respuesta_correctas": "R2",
+			"respuesta_correcta": "R2",
 			"puntuacion": 150,
 			"dificultad": 3,
 			"color": "red",
@@ -53,7 +53,7 @@
 			enunciado = data[indice].nombre;
 			pregunta_actual = data[indice].id;
 			array_preguntas = data[indice].respuestas;
-			$('.contenedor_preguntas').append('<div class="panel panel-default"><div class="panel-heading rel">Pregunta '+pregunta_actual+'<span class="label label-danger left-go">Dif. '+data[indice].dificultad+'</span></div><div class="panel-body"><div class="container muestra"><div class="vista_previa"><p class="circle"><span class="icon-pencil"></span></p><button class="btn btn-block btn-danger btn-lg bold boton-pregunta" id="'+pregunta_actual+'">Contestar</button></p></div><div class="" id="respuestas-'+pregunta_actual+'"><p>'+enunciado+'</p><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[0]+'">'+array_preguntas[0]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[1]+'">'+array_preguntas[1]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[2]+'">'+array_preguntas[2]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[3]+'">'+array_preguntas[3]+'</span><a href="#" id="confirmar'+pregunta_actual+'" class="btn btn-danger smally">Confirmar</a></div></div></div><div class="panel-footer bold"><span class="icon-lock"></span> '+data[indice].puntuacion+' puntos</div></div>');
+			$('.contenedor_preguntas').append('<div class="panel panel-default"><div class="panel-heading rel">Pregunta '+pregunta_actual+'<span class="label label-danger left-go">Dif. '+data[indice].dificultad+'</span></div><div class="panel-body"><div class="container muestra"><div class="vista_previa"><p class="circle"><span class="icon-pencil" id="span-'+pregunta_actual+'"></span></p><button class="btn btn-block btn-danger btn-lg bold boton-pregunta" id="'+pregunta_actual+'">Contestar</button></p></div><div class="" id="respuestas-'+pregunta_actual+'"><p>'+enunciado+'</p><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[0]+'">'+array_preguntas[0]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[1]+'">'+array_preguntas[1]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[2]+'">'+array_preguntas[2]+'</span><span class="resp"><input type="checkbox" name="vehicle" value="'+array_preguntas[3]+'">'+array_preguntas[3]+'</span><a href="#" id="confirmar'+pregunta_actual+'" class="btn btn-danger smally">Confirmar</a></div></div></div><div class="panel-footer bold"><span class="icon-lock"></span> '+data[indice].puntuacion+' puntos</div></div>');
 			$('#confirmar'+pregunta_actual).on('click', {id_pregunta: pregunta_actual}, verificar_respuestas);
 		}
 	}
@@ -65,16 +65,22 @@
 		/*AQUI VA TU MAGIA PARA VER SI ESTA CORRECTO*/
 		var $form_respuestas = $('#respuestas-'+id);
 		var respuesta = $form_respuestas.find('input:checked').val();
-		debugger;
+		console.log(data[id-1].respuesta_correcta);
+		//debugger;
 		if (respuesta == data[id-1].respuesta_correcta) {
 			correcto = true;
 		} else {
 			correcto = false;
 		}
-		debugger;
+		//debugger;
 		if(correcto){
 			console.log("correcto!");
-			var porciento = $('.progress-bar').css("width", "+=5");
+			var porcentaje = $('.progress-bar').css("width");
+			porcentaje = parseInt(porcentaje.split("%")[0]) + 5;
+			
+			console.log("por ! " + porcentaje);
+			var final = porcentaje + "%";
+			var porciento = $('.progress-bar').css("width", final);
 			swal(
 				'Bien hecho',
 				'Continua así',
@@ -98,12 +104,22 @@
 
 	function actualizar_equipos(id_pregunta, equipo) {
 		data[id_pregunta-1].estado = 3;
-		equipos[equipo-1].puntos = equipos[equipo-1].puntos + data[idpregunta-1].puntuacion;
+		equipos[equipo-1].puntos = equipos[equipo-1].puntos + data[id_pregunta-1].puntuacion;
 		if(equipo == 1){
-			$("li.team_beta").children('span.badge').html(equipos[equipo-1].puntos);
-		} else {
+			console.log("equipo 1");
 			$("li.team_alpha").children('span.badge').html(equipos[equipo-1].puntos);
+			$('#span-'+id_pregunta+'').addClass('constestado_letra_alpha');
+
+		} else {
+			console.log("equipo 2");
+			$("li.team_beta").children('span.badge').html(equipos[equipo-1].puntos);
+			$('#span-'+id_pregunta+'').addClass('constestado_letra_beta');
 		}
+		$('#span-'+id_pregunta+'').closest('.muestra').removeClass('muestra').removeClass('container').css("margin-top", "100px");
+		
+		$('#span-'+id_pregunta+'').closest('.circle').siblings('button.btn').addClass('disabled').addClass('btn-default').removeClass('btn-danger').empty().append('<span class="icon-lock"></span>');
+		debugger;
+		$('#span-'+id_pregunta+'').closest('.panel-body').siblings('div.panel-footer').children('span.icon-lock').addClass('icon-checkmark').removeClass('icon-lock');
 	}
 
 	function actualizar_turno(id_pregunta) {
